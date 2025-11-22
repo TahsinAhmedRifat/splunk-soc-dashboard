@@ -22,6 +22,21 @@ Top Processes / Events → “Highlights frequently executed processes or events
         <option name="charting.drilldown">none</option>
       </chart>
     </panel>
+    <panel>
+      <title>Top Hosts with Failed Logins</title>
+      <chart>
+        <search>
+          <query>source="WinEventLog:Security" EventCode=4625
+| stats count by host
+| sort - count
+| head 10</query>
+          <earliest>0</earliest>
+          <sampleRatio>1</sampleRatio>
+        </search>
+        <option name="charting.chart">pie</option>
+        <option name="charting.drilldown">none</option>
+      </chart>
+    </panel>
   </row>
   <row>
     <panel>
@@ -65,23 +80,6 @@ Top Processes / Events → “Highlights frequently executed processes or events
         <option name="totalsRow">false</option>
         <option name="wrap">true</option>
       </table>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <title>Top Hosts with Failed Logins</title>
-      <chart>
-        <search>
-          <query>source="WinEventLog:Security" EventCode=4625
-| stats count by host
-| sort - count
-| head 10</query>
-          <earliest>0</earliest>
-          <sampleRatio>1</sampleRatio>
-        </search>
-        <option name="charting.chart">pie</option>
-        <option name="charting.drilldown">none</option>
-      </chart>
     </panel>
   </row>
 </dashboard>
